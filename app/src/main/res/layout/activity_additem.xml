@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".Additem">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_close_24"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="5dp"
+        android:id="@+id/cross_btn_sc12"/>
+
+    <ImageView
+        android:id="@+id/uploadedvideo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_videocam_24"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="275dp"/>
+
+    <ImageView
+        android:id="@+id/uploadedimage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_camera_alt_24"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="75dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:id="@+id/Logintxt"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="70dp"
+        android:background="#CCCCCC" /> <!-- Divider line -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Name"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+
+    <EditText
+        android:id="@+id/itemname"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="230dp"
+        android:paddingLeft="15dp"
+        android:hint="Enter name"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_text_background" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Hourly Rate"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+
+    <EditText
+        android:id="@+id/rate"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="310dp"
+        android:paddingLeft="15dp"
+        android:hint="Enter hourly rate"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_text_background" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Description"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="390dp"
+        android:paddingLeft="15dp"
+        android:hint="Enter description"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_text_background" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="City"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+
+    <Spinner
+        android:id="@+id/spinner_city"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="470dp"
+        android:spinnerMode="dropdown"
+        android:paddingLeft="15dp"
+        android:background="@drawable/rounded_text_background"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:textAllCaps="false"
+        android:text="Post Item"
+        android:textSize="18dp"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="660dp"
+        android:textColor="#ffffff"
+        android:id="@+id/postItem_btn_sc12"
+        android:background="@drawable/button_background_orange"/>
+    <ImageView
+
+        android:id="@+id/uploadphoto"
+        android:layout_width="160dp"
+        android:layout_height="90dp"
+        android:background="@drawable/dotted_grey_sqr"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="20dp"/>
+    <ImageView
+        android:id="@+id/uploadVideoButton"
+        android:layout_width="160dp"
+        android:layout_height="90dp"
+        android:background="@drawable/dotted_grey_sqr"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="220dp"/>
+</RelativeLayout>

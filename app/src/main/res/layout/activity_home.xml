@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".Home">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_marginBottom="60dp"
+        android:id="@+id/scrl_View_sc5">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome,"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:textColor="#757575"
+                android:id="@+id/Logintxt"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:autoLink="all"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="#EF8305"
+                android:layout_marginStart="115dp"
+                android:layout_marginTop="30dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Logout"
+                android:textAllCaps="false"
+                android:text="Logout"
+                android:textSize="18dp"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="30dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_background_orange" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Featured items"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="95dp" />
+
+            <!-- First RecyclerView for Featured Items -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewFeaturedItems"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:layout_marginTop="130dp"
+                android:orientation="horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your items"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="325dp" />
+
+            <!-- Second RecyclerView for Your Items -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewYourItems"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:layout_marginTop="360dp"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent items"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="555dp" />
+
+            <!-- Third RecyclerView for Recent Items -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewRecentItems"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:layout_marginTop="600dp"
+                android:orientation="horizontal"
+                />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

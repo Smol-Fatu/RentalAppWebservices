@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".Profile">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navbar"/>
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/spotitimg"
+                android:layout_width="120dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="120dp"
+                android:elevation="2dp"
+                android:src="@drawable/baseline_account_circle_24" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/baseline_edit_24"
+                android:layout_marginStart="370dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/edit_btn_sc10"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:textColor="#757575"
+                android:id="@+id/Logintxt"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"/>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daud"
+                android:textStyle="bold"
+                android:textSize="26dp"
+                android:textColor="#515050"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="230dp"/>
+
+            <Button
+                android:id="@+id/notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/name"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginRight="-280dp"
+                android:text="Notification" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Islamabad"
+                android:textSize="18dp"
+                android:textColor="#515050"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="270dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18 items posted"
+                android:textSize="18dp"
+                android:textColor="#515050"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="270dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24 items posted"
+                android:textSize="18dp"
+                android:textColor="#515050"
+                android:layout_marginStart="270dp"
+                android:layout_marginTop="270dp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@drawable/item_grey_rectangle"
+                android:layout_marginTop="80dp"/>
+
+        </RelativeLayout>
+    <ScrollView
+        android:layout_below="@id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_marginTop="20dp"
+        android:id="@+id/scrlView_sc10">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/youritems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items You've Rented"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="15dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/youritems"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                />
+
+            <TextView
+                android:layout_below="@+id/recyclerView"
+                android:id="@+id/recentitems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent items"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="15dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/recentitems"
+                android:id="@+id/recyclerViewRecent"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:orientation="vertical"
+                />
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

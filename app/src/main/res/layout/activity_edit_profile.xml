@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".EditProfile">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_arrow_back_24"
+        android:layout_marginTop="22dp"
+        android:id="@+id/back_btn_sc13"
+        android:layout_marginStart="5dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profie"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:id="@+id/Logintxt"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="30dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="70dp"
+        android:background="#CCCCCC" /> <!-- Divider line -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Name"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="120dp"
+        android:paddingLeft="15dp"
+        android:hint="Enter name"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_text_background" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="175dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Conatct Number"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="200dp"
+        android:paddingLeft="15dp"
+        android:hint="Enter contact number"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_text_background" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="255dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Country"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+    <Spinner
+        android:id="@+id/spinner_country"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="280dp"
+        android:spinnerMode="dropdown"
+        android:paddingLeft="15dp"
+        android:background="@drawable/rounded_text_background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="City"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+
+    <Spinner
+        android:id="@+id/spinner_city"
+        android:layout_width="375dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="355dp"
+        android:spinnerMode="dropdown"
+        android:paddingLeft="15dp"
+        android:background="@drawable/rounded_text_background"/>
+    <TextView
+        android:id="@+id/savechanges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Changes"
+        android:autoLink="all"
+        android:textSize="19dp"
+        android:clickable="true"
+        android:textColor="#EE8205"
+        android:layout_marginBottom="35dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="270dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="405dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Profile Pic"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"/>
+    <ImageView
+        android:id="@+id/uploadedimage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_camera_alt_24"
+        android:layout_marginTop="460dp"
+        android:layout_marginStart="75dp"/>
+    <ImageView
+        android:id="@+id/uploadphoto"
+        android:layout_width="160dp"
+        android:layout_height="90dp"
+        android:background="@drawable/dotted_grey_sqr"
+        android:layout_marginTop="440dp"
+        android:layout_marginStart="20dp"/>
+</RelativeLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".login">
+
+    <ImageView
+        android:id="@+id/spotitimg"
+        android:layout_width="300dp"
+        android:layout_marginStart="60dp"
+        android:layout_height="200dp"
+        android:src="@drawable/spotit" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:id="@+id/Logintxt"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="160dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Email"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="375dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="240dp"
+        android:paddingLeft="15dp"
+        android:hint="Enter email"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_text_background" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="285dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Password"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="375dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="315dp"
+        android:paddingLeft="15dp"
+        android:hint="Enter password"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rounded_text_background" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/loginStatusTextView"
+        android:text=""
+        />
+    <TextView
+        android:id="@+id/frgt_btn_sc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot your password?"
+        android:autoLink="all"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#EF8305"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="365dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Login_butt_screen1"
+        android:textAllCaps="false"
+        android:text="Login"
+        android:textSize="18dp"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="415dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_background_orange"/>
+    <TextView
+        android:id="@+id/signup_btn_sc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:autoLink="all"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#5C5F63"
+        android:layout_marginBottom="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

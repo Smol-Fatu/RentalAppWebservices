@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Assignment3_20i0564_20i0445</string>
+    <string-array name="country_array">
+        <item>Pakistan</item>
+        <item>Afghanistan</item>
+        <item>India</item>
+    </string-array>
+    <string-array name="city_array">
+        <item>Islamabad</item>
+        <item>Lahore</item>
+        <item>Karachi</item>
+    </string-array>
+</resources>

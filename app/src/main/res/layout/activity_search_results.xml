@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".SearchResults">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_arrow_back_24"
+        android:layout_marginTop="22dp"
+        android:id="@+id/back_btn_sc7"
+        android:layout_marginStart="5dp"
+        android:elevation="15dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search Results"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="#5C5F63"
+        android:id="@+id/Logintxt"
+        android:paddingLeft="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="70dp"
+        android:background="#CCCCCC" /> <!-- Divider line -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Some item"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="105dp"
+                android:layout_marginStart="15dp"/>
+            <Spinner
+                android:id="@+id/spinner_serachResults_sc7"
+                android:layout_width="180dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="210dp"
+                android:layout_marginTop="100dp"
+                android:spinnerMode="dropdown"
+                android:paddingLeft="15dp"
+                android:background="@drawable/rounded_text_background"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:layout_marginTop="130dp"
+                android:orientation="vertical"
+                />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

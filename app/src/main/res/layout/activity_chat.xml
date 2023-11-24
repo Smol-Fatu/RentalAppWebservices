@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".Chat">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navbar"/>
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="370dp"
+        android:layout_marginTop="110dp"
+        android:elevation="2dp"
+        android:id="@+id/chat_arrw_sc8"
+        android:src="@drawable/baseline_arrow_forward_ios_24"/>
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="370dp"
+        android:layout_marginTop="185dp"
+        android:elevation="2dp"
+        android:src="@drawable/baseline_arrow_forward_ios_24"/>
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="370dp"
+        android:layout_marginTop="255dp"
+        android:elevation="2dp"
+        android:src="@drawable/baseline_arrow_forward_ios_24"/>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="90dp"
+        android:elevation="4dp"
+        android:src="@drawable/baseline_account_circle_24" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="165dp"
+        android:elevation="4dp"
+        android:src="@drawable/baseline_account_circle_24" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="235dp"
+        android:elevation="4dp"
+        android:src="@drawable/baseline_account_circle_24" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:textColor="#5C5F63"
+        android:id="@+id/Logintxt"
+        android:paddingLeft="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="70dp"
+        android:background="#CCCCCC" /> <!-- Divider line -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 new messages"
+        android:textSize="15dp"
+        android:textColor="#EF8305"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="135dp"
+        android:elevation="2dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No new messages"
+        android:textSize="15dp"
+        android:textColor="#808080"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="205dp"
+        android:elevation="2dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No new messages"
+        android:textSize="15dp"
+        android:textColor="#808080"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="275dp"
+        android:elevation="2dp"/>
+
+
+    <TextView
+        android:layout_width="600dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="15dp"
+        android:text="Makenna Dias"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:paddingLeft="70dp"
+        android:textColor="#5C5F63"
+        android:background="@drawable/item_sqr_grey_rec"
+        android:elevation="1dp"/>
+
+    <TextView
+        android:layout_width="600dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="162dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="15dp"
+        android:text="Miracle Philips"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:paddingLeft="70dp"
+        android:textColor="#5C5F63"
+        android:background="@drawable/item_sqr_grey_rec"
+        android:elevation="1dp"/>
+
+    <TextView
+        android:layout_width="600dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="234dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="15dp"
+        android:text="Zaire Gouse"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:paddingLeft="70dp"
+        android:textColor="#5C5F63"
+        android:background="@drawable/item_sqr_grey_rec"
+        android:elevation="1dp"/>
+
+</RelativeLayout>

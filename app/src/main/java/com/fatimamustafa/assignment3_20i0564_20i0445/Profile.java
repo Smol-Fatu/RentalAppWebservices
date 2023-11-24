@@ -1,0 +1,133 @@
+package com.fatimamustafa.assignment3_20i0564_20i0445;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.ArrayList;
+
+public class Profile extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
+    TextView name;
+    RecyclerView recyclerView1,recyclerView2;
+    MyAdapter myAdapter1,myAdapter2;
+    ArrayList<Items> list1,list2;
+    private DatabaseHelper dbHelper;
+    ImageView imageView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+        name = findViewById(R.id.name);
+        dbHelper = new DatabaseHelper(this);
+        recyclerView1 = findViewById(R.id.recyclerView);
+        recyclerView2 = findViewById(R.id.recyclerViewRecent);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+        list1 = new ArrayList<>();
+        list2 = new ArrayList<>();
+        myAdapter1 = new MyAdapter(list1, this);
+        myAdapter2 = new MyAdapter(list2, this);
+
+        // Set adapters for RecyclerViews
+        recyclerView1.setAdapter(myAdapter1);
+        recyclerView2.setAdapter(myAdapter2);
+
+        fetchItemsFromSQLite();
+
+        imageView= findViewById(R.id.edit_btn_sc10);
+
+        imageView.setOnClickListener(v -> {
+            Intent intent = new Intent(Profile.this,EditProfile.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationView.setSelectedItemId(R.id.homeItem);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int id = item.getItemId();
+                if(id==R.id.homeItem) {
+                    Intent intent = new Intent(Profile.this,Home.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id==R.id.searchItem) {
+                    Intent intent = new Intent(Profile.this,Search.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id==R.id.addItem) {
+                    Intent intent = new Intent(Profile.this,Additem.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+
+                } else if (id==R.id.chatItem) {
+                    Intent intent = new Intent(Profile.this,Chat.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+
+                } else if (id==R.id.profileItem) {
+                    Intent intent = new Intent(Profile.this,Profile.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+
+                }
+                return false;
+            }
+        });
+
+    }
+    private void fetchItemsFromSQLite() {
+        // Assuming you have a method in DatabaseHelper to get all items
+        ArrayList<Items> itemsList = dbHelper.getAllItems();
+
+        // Check if the list is not empty
+        if (!itemsList.isEmpty()) {
+            list1.clear();
+            list2.clear();
+
+            for (Items item : itemsList) {
+                // Assuming you want to display all items in the same way
+                list1.add(item);
+                list2.add(item);
+                int itemId = dbHelper.getItemIdByName(item.getItemname());
+                if (itemId != -1) {
+                    // Item ID found, use it as needed
+                    //Toast.makeText(this, "Item ID: " + itemId, Toast.LENGTH_SHORT).show();
+                } else {
+                    // Item not found
+                    Toast.makeText(this, "Item not found", Toast.LENGTH_SHORT).show();
+                }
+                Log.d("image",item.getImageUrl());
+            }
+
+            // Notify the adapter that the data set has changed
+            myAdapter1.notifyDataSetChanged();
+            myAdapter2.notifyDataSetChanged();
+        } else {
+            Toast.makeText(Profile.this, "No items found in SQLite database", Toast.LENGTH_SHORT).show();
+        }
+    }
+}

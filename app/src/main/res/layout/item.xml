@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    >
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="3"
+        tools:context=".screen1">
+        <TextView
+            android:id="@+id/itemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Name"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="115dp"
+            android:layout_alignParentStart="true"
+            android:elevation="5dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$10/hr"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginTop="115dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:elevation="5dp"
+            android:textColor="#EF8305"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Islamabad"
+            android:textSize="13dp"
+            android:layout_marginTop="141dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:elevation="5dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7th Mar"
+            android:textSize="13dp"
+            android:layout_marginTop="140dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/black"
+            android:elevation="5dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/item_grey_rectangle"
+            android:clickable="true"
+            android:id="@+id/item_image"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/item_lightgrey_rectangle"
+            android:layout_marginTop="115dp"
+            android:layout_marginStart="1dp"
+            android:elevation="4dp"
+            />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
