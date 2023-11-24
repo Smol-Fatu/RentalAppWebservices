@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".PersonChat">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_arrow_back_24"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="5dp"
+        android:id="@+id/back_btn_sc9"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_camera_alt_24"
+        android:layout_marginTop="692dp"
+        android:layout_marginStart="15dp"
+        android:elevation="15dp"
+        android:id="@+id/camera_btn_sc9"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_image_24"
+        android:layout_marginTop="692dp"
+        android:layout_marginStart="55dp"
+        android:elevation="15dp"
+        android:id="@+id/gallery_btn_sc9"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_file_24"
+        android:layout_marginTop="692dp"
+        android:layout_marginStart="95dp"
+        android:elevation="15dp"
+        android:id="@+id/file_btn_sc9"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_call_24"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="325dp"
+        android:elevation="15dp"
+        android:id="@+id/call_btn_sc9"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_videocam_24"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="365dp"
+        android:elevation="15dp"
+        android:id="@+id/vid_btn_sc9"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Makenna Dias"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:textColor="#5C5F63"
+        android:id="@+id/Logintxt"
+        android:paddingLeft="0dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="70dp"
+        android:background="#CCCCCC" /> <!-- Divider line -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/rounded_text_background"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/rounded_text_background"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/rounded_text_background"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/rounded_text_background"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/rounded_text_background"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="..."
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/rounded_text_background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginStart="155dp"
+        android:background="@drawable/chat_yellow_box_rect"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="155dp"
+        android:background="@drawable/chat_yellow_box_rect"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample message"
+        android:textSize="20dp"
+        android:padding="6dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="155dp"
+        android:background="@drawable/chat_yellow_box_rect"/>
+    <View
+        android:id="@+id/doc"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/item_lightgrey_rectangle"
+        android:layout_marginTop="640dp"
+        android:elevation="10dp"/>
+
+
+    <TextView
+        android:id="@+id/reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Write a reply..."
+        android:textSize="19dp"
+        android:layout_marginTop="645dp"
+        android:elevation="10dp"
+        android:layout_marginStart="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="520dp"
+        android:elevation="10dp"
+        android:layout_marginStart="280dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="470dp"
+        android:elevation="10dp"
+        android:layout_marginStart="115dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="420dp"
+        android:elevation="10dp"
+        android:layout_marginStart="115dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="320dp"
+        android:elevation="10dp"
+        android:layout_marginStart="280dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="370dp"
+        android:elevation="10dp"
+        android:layout_marginStart="280dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="270dp"
+        android:elevation="10dp"
+        android:layout_marginStart="280dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="170dp"
+        android:elevation="10dp"
+        android:layout_marginStart="280dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18:56"
+        android:textSize="14dp"
+        android:layout_marginTop="220dp"
+        android:elevation="10dp"
+        android:layout_marginStart="115dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:textSize="20dp"
+        android:layout_marginTop="690dp"
+        android:elevation="10dp"
+        android:textColor="#F08300"
+        android:textStyle="bold"
+        android:layout_marginStart="350dp"/>
+</RelativeLayout>

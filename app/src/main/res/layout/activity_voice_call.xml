@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".VoiceCall">
+
+    <View
+        android:layout_width="500dp"
+        android:layout_height="570dp"
+        android:background="@drawable/item_grey_rectangle"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:58"
+        android:textColor="#373535"
+        android:textSize="20dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginStart="170dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Caller Name"
+        android:textStyle="bold"
+        android:textColor="#373535"
+        android:textSize="25dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="130dp"
+        />
+    <View
+        android:layout_width="50dp"
+        android:layout_height="5dp"
+        android:background="@drawable/item_grey_rectangle"
+        android:layout_marginTop="580dp"
+        android:layout_marginStart="190dp"/>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_close_24"
+        android:layout_marginTop="670dp"
+        android:id="@+id/close_btn_sc18"
+        android:layout_marginStart="200dp"/>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_mic_off_24"
+        android:layout_marginTop="600dp"
+        android:layout_marginStart="100dp"/>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_pause_circle_outline_24"
+        android:layout_marginTop="600dp"
+        android:layout_marginStart="290dp"/>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_volume_up_24"
+        android:layout_marginTop="600dp"
+        android:id="@+id/close_btn_sc17"
+        android:layout_marginStart="200dp"/>
+</RelativeLayout>

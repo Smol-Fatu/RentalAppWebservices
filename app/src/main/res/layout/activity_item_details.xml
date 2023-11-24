@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".ItemDetails">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/baseline_arrow_back_24"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="5dp"/>
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/orange_circle"
+        android:layout_marginTop="358dp"
+        android:layout_marginStart="170dp"
+        android:elevation="1dp"/>
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/dark_grey_circle"
+        android:layout_marginTop="358dp"
+        android:layout_marginStart="190dp"
+        android:elevation="1dp"/>
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/dark_grey_circle"
+        android:layout_marginTop="358dp"
+        android:layout_marginStart="210dp"
+        android:elevation="1dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item"
+        android:textStyle="bold"
+        android:textSize="23dp"
+        android:textColor="#5C5F63"
+        android:id="@+id/Logintxt"
+        android:paddingLeft="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:background="@drawable/item_grey_rectangle"
+        android:layout_marginTop="60dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$12"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_marginTop="390dp"
+        android:layout_marginStart="15dp"
+        android:textColor="#EF8305"/>
+    <TextView
+        android:id="@+id/rprt_btn_sc11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report"
+        android:textSize="18dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="335dp"
+        android:textColor="#EF8305"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/hr"
+        android:textSize="22dp"
+        android:layout_marginTop="392dp"
+        android:layout_marginStart="57dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name of the Item comes Here"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:layout_marginTop="420dp"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Islamabad"
+        android:textSize="16dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginStart="45dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7th Mar, 2023"
+        android:textSize="16dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginStart="290dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur
+adipiscing elit. Mauris nec nisi a sem
+elementum condimentum. Proin volutpat erat
+tortor, eu gravida orci efficitur eget."
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="485dp"
+        android:layout_marginStart="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ryan Calzoni"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="600dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24 items rented"
+        android:textSize="16dp"
+        android:layout_marginTop="625dp"
+        android:layout_marginStart="50dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/item_lightgrey_rectangle"
+        android:layout_marginTop="660dp"
+        android:elevation="2dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:textAllCaps="false"
+        android:text="Rent it"
+        android:textSize="18dp"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="675dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_background_orange"
+        android:elevation="4dp"/>
+
+</RelativeLayout>
