@@ -1,24 +1,21 @@
 package com.fatimamustafa.assignment3_20i0564_20i0445;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
-
+import android.support.annotation.NonNull;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,295 +30,204 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
-
 public class MainActivity extends AppCompatActivity {
 
-    Button GetImageFromGalleryButton, UploadImageOnServerButton;
+    Button GetVideoFromGalleryButton, UploadVideoOnServerButton;
+    VideoView ShowSelectedVideo;
 
-    ImageView ShowSelectedImage;
+    private Uri selectedVideoUri;
 
-    EditText imageName;
-
-    Bitmap FixBitmap;
-
-    String ImageTag = "image_tag" ;
-
-    String ImageName = "image_data" ;
-
-    ProgressDialog progressDialog ;
-
-    ByteArrayOutputStream byteArrayOutputStream ;
-
-    byte[] byteArray ;
-
-    String ConvertImage ;
-
-    String GetImageNameFromEditText;
-
-    HttpURLConnection httpURLConnection ;
-
-    URL url;
-
-    OutputStream outputStream;
-
-    BufferedWriter bufferedWriter ;
-
-    int RC ;
-
-    BufferedReader bufferedReader ;
-
-    StringBuilder stringBuilder;
-
-    boolean check = true;
-
-    private int GALLERY = 1, CAMERA = 2;
+    private static final int VIDEO_GALLERY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GetImageFromGalleryButton = (Button)findViewById(R.id.buttonSelect);
+        // Check for runtime permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                // Permission not granted, request it
+                String[] permissions = {android.Manifest.permission.READ_EXTERNAL_STORAGE};
+                requestPermissions(permissions, VIDEO_GALLERY);
+            }
+        }
 
-        UploadImageOnServerButton = (Button)findViewById(R.id.buttonUpload);
+        GetVideoFromGalleryButton = findViewById(R.id.buttonSelect);
+        UploadVideoOnServerButton = findViewById(R.id.buttonUpload);
+        ShowSelectedVideo = findViewById(R.id.videoView);
 
-        ShowSelectedImage = (ImageView)findViewById(R.id.imageView);
-
-        imageName=(EditText)findViewById(R.id.imageName);
-
-        byteArrayOutputStream = new ByteArrayOutputStream();
-
-        GetImageFromGalleryButton.setOnClickListener(new View.OnClickListener() {
+        GetVideoFromGalleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                showPictureDialog();
-
-
+                chooseVideoFromGallery();
             }
         });
 
-
-        UploadImageOnServerButton.setOnClickListener(new View.OnClickListener() {
+        UploadVideoOnServerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                GetImageNameFromEditText = imageName.getText().toString();
-
-                UploadImageToServer();
-
+                if (selectedVideoUri != null) {
+                    UploadVideoToServer(selectedVideoUri);
+                } else {
+                    Toast.makeText(MainActivity.this, "Please select a video first", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
 
-        if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{android.Manifest.permission.CAMERA},
-                        5);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == VIDEO_GALLERY) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed with your functionality
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void showPictureDialog(){
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
-        pictureDialog.setTitle("Select Action");
-        String[] pictureDialogItems = {
-                "Photo Gallery",
-                "Camera" };
-        pictureDialog.setItems(pictureDialogItems,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                choosePhotoFromGallary();
-                                break;
-                            case 1:
-                                takePhotoFromCamera();
-                                break;
-                        }
-                    }
-                });
-        pictureDialog.show();
-    }
-    public void choosePhotoFromGallary() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        startActivityForResult(galleryIntent, GALLERY);
-    }
-
-    private void takePhotoFromCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, CAMERA);
+    private void chooseVideoFromGallery() {
+        Intent videoIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(videoIntent, VIDEO_GALLERY);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == this.RESULT_CANCELED) {
-            return;
-        }
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                Uri contentURI = data.getData();
-                try {
-                    FixBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-                    // String path = saveImage(bitmap);
-                    //Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    ShowSelectedImage.setImageBitmap(FixBitmap);
-                    UploadImageOnServerButton.setVisibility(View.VISIBLE);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-                }
+        if (resultCode == RESULT_OK) {
+            if (requestCode == VIDEO_GALLERY) {
+                selectedVideoUri = data.getData();
+                ShowSelectedVideo.setVideoURI(selectedVideoUri);
+                UploadVideoOnServerButton.setVisibility(View.VISIBLE);
             }
-
-        } else if (requestCode == CAMERA) {
-            FixBitmap = (Bitmap) data.getExtras().get("data");
-            ShowSelectedImage.setImageBitmap(FixBitmap);
-            UploadImageOnServerButton.setVisibility(View.VISIBLE);
-            //  saveImage(thumbnail);
-            //Toast.makeText(ShadiRegistrationPart5.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void UploadVideoToServer(Uri videoUri) {
+        ShowSelectedVideo.stopPlayback(); // Stop video playback for uploading
 
-    public void UploadImageToServer(){
+        String videoPath = getRealPathFromURI(videoUri);
 
-        FixBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
-
-        byteArray = byteArrayOutputStream.toByteArray();
-
-        ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-        class AsyncTaskUploadClass extends AsyncTask<Void, Void, String> {
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressDialog = ProgressDialog.show(MainActivity.this, "Image is Uploading", "Please Wait", false, false);
-            }
-
-            @Override
-            protected void onPostExecute(String string1) {
-                super.onPostExecute(string1);
-                progressDialog.dismiss();
-                Toast.makeText(MainActivity.this, string1, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(Void... params) {
-                ImageProcessClass imageProcessClass = new ImageProcessClass();
-                HashMap<String, String> HashMapParams = new HashMap<String, String>();
-                HashMapParams.put(ImageTag, GetImageNameFromEditText);
-                HashMapParams.put(ImageName, ConvertImage);
-                String FinalData = imageProcessClass.ImageHttpRequest("http://192.168.10.12/assign3smd/uploadimg.php", HashMapParams);
-                return FinalData;
-            }
+        if (videoPath != null) {
+            new UploadVideoAsyncTask().execute(videoPath);
+            Log.d("VideoUri", videoUri.toString());
+        } else {
+            Toast.makeText(MainActivity.this, "Error retrieving video path", Toast.LENGTH_SHORT).show();
         }
-
-        AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-        AsyncTaskUploadClassOBJ.execute();
     }
 
-    public class ImageProcessClass {
+    // Helper method to get the real path from URI
+    private String getRealPathFromURI(Uri uri) {
+        String[] projection = {MediaStore.Video.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 
-        public String ImageHttpRequest(String requestURL, HashMap<String, String> PData) {
+        if (cursor != null) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+            cursor.moveToFirst();
+            String filePath = cursor.getString(column_index);
+            cursor.close();
+            return filePath;
+        }
 
-            StringBuilder stringBuilder = new StringBuilder();
+        return null;
+    }
+
+    private class UploadVideoAsyncTask extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Uploading Video...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String videoPath = params[0];
+            String videoName = "video_name"; // Replace with your desired video name
 
             try {
-                URL url = new URL(requestURL);
-
+                URL url = new URL("http://192.168.10.51/assign3smd/uploadvideo.php"); // Replace with your server URL
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
                 httpURLConnection.setReadTimeout(20000);
-
                 httpURLConnection.setConnectTimeout(20000);
-
                 httpURLConnection.setRequestMethod("POST");
-
                 httpURLConnection.setDoInput(true);
-
                 httpURLConnection.setDoOutput(true);
 
                 OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
-                BufferedWriter bufferedWriter = new BufferedWriter(
-                        new OutputStreamWriter(outputStream, "UTF-8"));
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                byte[] bytes = Base64.encode(Files.readAllBytes(Paths.get(videoPath)), Base64.DEFAULT);
+                String videoData = new String(bytes);
 
-                bufferedWriter.write(bufferedWriterDataFN(PData));
+                Map<String, String> paramsMap = new HashMap<>();
+                paramsMap.put("video_data", videoData);
+                paramsMap.put("video_tag", videoName);
+
+                bufferedWriter.write(getPostDataString(paramsMap));
 
                 bufferedWriter.flush();
-
                 bufferedWriter.close();
-
                 outputStream.close();
 
-                int RC = httpURLConnection.getResponseCode();
-
-                if (RC == HttpURLConnection.HTTP_OK) {
-
+                int responseCode = httpURLConnection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
 
-                    stringBuilder = new StringBuilder();
-
-                    String RC2;
-
-                    while ((RC2 = bufferedReader.readLine()) != null) {
-
-                        stringBuilder.append(RC2);
+                    while ((line = bufferedReader.readLine()) != null) {
+                        response.append(line);
                     }
+
+                    bufferedReader.close();
+                    return response.toString();
+                } else {
+                    return "Error uploading video. HTTP response code: " + responseCode;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d("Error", e.getMessage());
+                return "Error uploading video: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+        }
+
+        private String getPostDataString(Map<String, String> params) throws UnsupportedEncodingException {
+            StringBuilder result = new StringBuilder();
+
+            boolean first = true;
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                if (first) {
+                    first = false;
+                } else {
+                    result.append("&");
                 }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return stringBuilder.toString();
-        }
-
-        private String bufferedWriterDataFN(HashMap<String, String> HashMapParams) throws UnsupportedEncodingException, UnsupportedEncodingException {
-
-            StringBuilder stringBuilder = new StringBuilder();
-
-            boolean check = true;
-
-            for (Map.Entry<String, String> KEY : HashMapParams.entrySet()) {
-                if (check)
-                    check = false;
-                else
-                    stringBuilder.append("&");
-
-                stringBuilder.append(URLEncoder.encode(KEY.getKey(), "UTF-8"));
-
-                stringBuilder.append("=");
-
-                stringBuilder.append(URLEncoder.encode(KEY.getValue(), "UTF-8"));
+                result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+                result.append("=");
+                result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
             }
 
-            return stringBuilder.toString();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 5) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Now user should be able to use camera
-
-            }
-            else {
-
-                Toast.makeText(MainActivity.this, "Unable to use Camera..Please Allow us to use Camera", Toast.LENGTH_LONG).show();
-
-            }
+            return result.toString();
         }
     }
 }

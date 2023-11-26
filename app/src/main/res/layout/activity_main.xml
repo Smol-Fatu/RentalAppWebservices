@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Upload Image To Server"
+                android:text="Upload Video To Server"
                 android:textSize="26dp"
                 android:textColor="#000"
                 android:fontFamily="sans-serif"
@@ -37,7 +37,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Image Name"
+                android:text="Video Name"
                 android:layout_marginTop="10dp"/>
             <EditText
                 android:layout_width="match_parent"
@@ -46,19 +46,19 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Image"
+                android:text="Select Video"
                 android:id="@+id/buttonSelect"
                 android:background="#FFF"
                 android:layout_margin="10dp"/>
 
-            <ImageView
+            <VideoView
                 android:layout_width="fill_parent"
                 android:layout_height="270dp"
-                android:id="@+id/imageView"/>
+                android:id="@+id/videoView"/>
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="#000"
+                android:background="#7A7979"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp">
             </RelativeLayout>

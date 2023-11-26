@@ -219,6 +219,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return searchResults;
     }
+    @SuppressLint("Range")
+    public Items getItemByName(String itemName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Items item = null;
+
+        String query = "SELECT * FROM " + TABLE_ROOM_RENTAL +
+                " WHERE " + COLUMN_ITEM_NAME + " = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{itemName});
+
+        if (cursor.moveToFirst()) {
+            // Assuming your Items class has a constructor that takes all columns as parameters
+            item = new Items(
+                    cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_NAME)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_DESC)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_RATE)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_CITY)),
+                    "11-23-2023",
+                    cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_IMG_PATH))
+            );
+        }
+
+        cursor.close();
+        db.close();
+
+        return item;
+    }
 
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -9,14 +9,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.onesignal.Continue;
+import com.onesignal.OneSignal;
+import com.onesignal.debug.LogLevel;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Profile extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -26,10 +42,13 @@ public class Profile extends AppCompatActivity {
     ArrayList<Items> list1,list2;
     private DatabaseHelper dbHelper;
     ImageView imageView;
+    private RequestQueue requestQueue;
+    private static final String ONESIGNAL_APP_ID = "90ca0b6f-3abd-4c19-afbe-82b1d0afc2b9";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        requestQueue = Volley.newRequestQueue(this);
         name = findViewById(R.id.name);
         dbHelper = new DatabaseHelper(this);
         recyclerView1 = findViewById(R.id.recyclerView);
@@ -46,6 +65,7 @@ public class Profile extends AppCompatActivity {
         recyclerView2.setAdapter(myAdapter2);
 
         fetchItemsFromSQLite();
+        getUserDetails(0);
 
         imageView= findViewById(R.id.edit_btn_sc10);
 
@@ -54,8 +74,36 @@ public class Profile extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        // Verbose Logging set to help debug issues, remove before releasing your app.
+        OneSignal.getDebug().setLogLevel(LogLevel.VERBOSE);
 
+        // OneSignal Initialization
+        OneSignal.initWithContext(this, ONESIGNAL_APP_ID);
 
+        // requestPermission will show the native Android notification permission prompt.
+        // NOTE: It's recommended to use a OneSignal In-App Message to prompt instead.
+        OneSignal.getNotifications().requestPermission(true, Continue.with(r -> {
+            if (r.isSuccess()) {
+                if (r.getData()) {
+                    // `requestPermission` completed successfully and the user has accepted permission
+                }
+                else {
+                    // `requestPermission` completed successfully but the user has rejected permission
+                }
+            }
+            else {
+                // `requestPermission` completed unsuccessfully, check `r.getThrowable()` for more info on the failure reason
+            }
+        }));
+
+        Button notificationButton = findViewById(R.id.notification);
+        notificationButton.setOnClickListener(v -> {
+
+                    String id = OneSignal.getUser().getPushSubscription().getId();
+                    Intent intent = new Intent(Profile.this, Home.class);
+                    intent.putExtra("message", "This is a notification");
+                    startActivity(intent);
+                });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationView.setSelectedItemId(R.id.homeItem);
@@ -98,6 +146,59 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+    }
+    private void getUserDetails(int userId) {
+        String url = "http://192.168.10.51/assign3smd/get_user.php";
+
+        // Use Volley or another networking library to make the request
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            int status = jsonResponse.getInt("Status");
+                            if (status == 1) {
+                                String name = jsonResponse.getString("Name");
+                                String profilePic = jsonResponse.getString("ProfilePic");
+
+                                String imageUrl = profilePic;
+                                ImageView itemImage = findViewById(R.id.profilepic);
+                                Picasso.get()
+                                        .load("http://192.168.10.51/assign3smd/"+imageUrl)
+                                        .error(R.drawable.baseline_account_circle_24) // Replace with your error placeholder
+                                        .into(itemImage);
+                            } else {
+                                String message = jsonResponse.getString("Message");
+                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("JSON Exception", e.toString());
+                            Toast.makeText(getApplicationContext(), "Error parsing JSON", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Log the error message for debugging
+                        Log.e("Volley Error", "Error retrieving user details: " + error.getMessage());
+
+                        // Show a toast with a generic error message
+                        Toast.makeText(getApplicationContext(), "Error retrieving user details", Toast.LENGTH_SHORT).show();
+                    }
+            }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(userId));
+                return params;
+            }
+        };
+
+        // Add the request to the RequestQueue (assuming you have a RequestQueue instance)
+        requestQueue.add(stringRequest);
     }
     private void fetchItemsFromSQLite() {
         // Assuming you have a method in DatabaseHelper to get all items

@@ -1,5 +1,6 @@
 package com.fatimamustafa.assignment3_20i0564_20i0445;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,10 +35,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    private OnItemClickListener onItemClickListener;
 
+    // Constructor and other necessary methods
+
+    public interface OnItemClickListener {
+        void onItemClick(int position, String itemData);
+    }
+
+    // Method to set the item click listener
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Items item = items.get(position);
         String imageUrl = item.getImageUrl();
         ImageView itemImage = holder.itemView.findViewById(R.id.item_image);
@@ -49,6 +61,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.priceTextView.setText(item.getPrice());
         holder.locationTextView.setText(item.getLocation());
         holder.dateTextView.setText(item.getDate());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(position, item.getItemname());
+                }
+            }
+        });
     }
 
     @Override

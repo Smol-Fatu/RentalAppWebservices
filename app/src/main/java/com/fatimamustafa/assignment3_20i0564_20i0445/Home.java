@@ -1,6 +1,8 @@
 package com.fatimamustafa.assignment3_20i0564_20i0445;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,15 +27,17 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
-
     BottomNavigationView bottomNavigationView;
     TextView name;
     RecyclerView recyclerView1,recyclerView2,recyclerView3;
@@ -44,6 +48,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         dbHelper = new DatabaseHelper(this);
 
@@ -92,6 +97,13 @@ public class Home extends AppCompatActivity {
 
         name=findViewById(R.id.name);
         name.setText("Fatima");
+
+        // Assuming you are in Activity B
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("message")) {
+            String message = intent.getStringExtra("message");
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        }
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationView.setSelectedItemId(R.id.homeItem);
@@ -266,13 +278,4 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    private void loadImages(ArrayList<Items> itemList, RecyclerView recyclerView) {
-        for (int i = 0; i < itemList.size(); i++) {
-            Items item = itemList.get(i);
-            ImageView imageView = recyclerView.getChildAt(i).findViewById(R.id.uploadedimage);
-            Glide.with(this)
-                    .load(item.getImageUrl())
-                    .into(imageView);
-        }
-    }
 }

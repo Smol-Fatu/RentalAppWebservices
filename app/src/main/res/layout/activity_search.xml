@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="3"
-    tools:context=".screen1">
+    tools:context=".Search">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

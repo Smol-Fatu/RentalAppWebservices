@@ -44,7 +44,21 @@ public class Search extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(searchResults, this);
         recyclerView.setAdapter(adapter);
+        MyAdapter.OnItemClickListener itemClickListener = new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, String itemData) {
+                // Handle item click here
+                // You can obtain the position and item data
+                // ...
 
+                // If you want to open a new activity with the details, you can do something like this:
+                Intent intent = new Intent(Search.this, ItemDetails.class);
+                intent.putExtra("item_data", itemData);
+                startActivity(intent);
+            }
+        };
+
+        adapter.setOnItemClickListener(itemClickListener);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -57,6 +71,7 @@ public class Search extends AppCompatActivity {
                 // Handle search query changes
                 searchResults=dbHelper.searchItems(newText);
                 adapter.updateData(searchResults);
+
                 return true;
             }
         });

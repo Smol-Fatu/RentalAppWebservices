@@ -30,11 +30,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +95,7 @@ public class EditProfile extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     int userId;
+    ImageView img;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -116,6 +120,8 @@ public class EditProfile extends AppCompatActivity {
                 R.array.city_array,
                 android.R.layout.simple_spinner_item
         );
+
+
 
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citySpinner.setAdapter(cityAdapter);
@@ -188,7 +194,7 @@ public class EditProfile extends AppCompatActivity {
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditProfile.this, Home.class);
+                Intent intent = new Intent(EditProfile.this, Profile.class);
                 // Start the new activity
                 startActivity(intent);
             }
@@ -374,6 +380,7 @@ public class EditProfile extends AppCompatActivity {
             return stringBuilder.toString();
         }
     }
+
     private static final String PROGRESS_DIALOG_VISIBLE_KEY = "progressDialogVisible";
 
     @Override
